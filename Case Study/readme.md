@@ -147,37 +147,3 @@ remotely_app/
 ├── README.md             # This file
 └── QUICK_START.md        # Quick reference
 ```
-
-## 📸 Taking Screenshots
-
-The `images/` folder is ready for your screenshots. Here's how to add them:
-
-### Automated Helper (macOS/Linux)
-
-```bash
-./take-screenshots.sh
-```
-
-### Manual Screenshots
-
-1. **Open each page in your browser**
-2. **Set window size:** 1280x720 or 1920x1080 recommended
-3. **Take screenshot:**
-   - **macOS:** `Cmd + Shift + 4` then `Space` (click window)
-   - **Windows:** `Windows + Shift + S` (select area)
-   - **Linux:** `PrtScn` or Shift + PrtScn
-
-4. **Save to images/ folder with exact filenames:**
-   - `landing-page.png` → index.html
-   - `browse-jobs.png` → browse-jobs.html
-   - `job-details.png` → job-details.html
-   - `dashboard.png` → dashboard.html
-   - `employer-dashboard.png` → employer-dashboard.html
-   - `profile.png` → profile.html
-
-### Browser Screenshot Tools
-
-- **Chrome DevTools:** `Cmd/Ctrl + Shift + P` → "Capture full size screenshot"
-- **Firefox:** Right-click → "Take Screenshot"
-
-Once added, screenshots will display in the [Application Pages](#application-pages) section above!
