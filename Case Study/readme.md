@@ -1,5 +1,7 @@
 # Remotely - Remote Job Board Application
 
+[![Live Deployed Link](https://img.shields.io/badge/View–Website-blue?style=flat-square)](https://buildsbyaman.framer.website/)
+
 ## Overview
 
 A complete remote job board web application featuring multiple user interfaces for job seekers, employers, and general visitors. Built with modern design principles using Tailwind CSS and Material Icons, with full dark mode support.
