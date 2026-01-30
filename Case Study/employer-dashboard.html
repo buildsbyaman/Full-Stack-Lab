@@ -1,0 +1,745 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Employer Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2b8cee",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "surface-dark": "#1a242d",
+              "surface-light": "#ffffff",
+            },
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.375rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom scrollbar for dark mode */
+      .dark ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      .dark ::-webkit-scrollbar-track {
+        background: #101922;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #2b3642;
+        border-radius: 4px;
+      }
+      .dark ::-webkit-scrollbar-thumb:hover {
+        background: #3c4a5a;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-200 overflow-hidden"
+  >
+    <div class="flex h-screen w-full">
+      <!-- Sidebar -->
+      <aside
+        class="hidden lg:flex flex-col w-72 h-full bg-white dark:bg-[#0d141c] border-r border-slate-200 dark:border-slate-800 flex-shrink-0"
+      >
+        <div class="p-6 pb-2">
+          <div class="flex items-center gap-3 mb-8">
+            <a href="index.html" class="flex items-center gap-3">
+              <div class="bg-primary/20 p-2 rounded-lg">
+                <span class="material-symbols-outlined text-primary text-2xl"
+                  >work_outline</span
+                >
+              </div>
+              <div>
+                <h1
+                  class="text-xl font-bold tracking-tight text-slate-900 dark:text-white"
+                >
+                  TalentFlow
+                </h1>
+                <p
+                  class="text-xs text-slate-500 dark:text-slate-400 font-medium"
+                >
+                  Recruiter Admin
+                </p>
+              </div>
+            </a>
+          </div>
+          <nav class="flex flex-col gap-1">
+            <a
+              class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary text-white shadow-sm shadow-primary/20 group"
+              href="employer-dashboard.html"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >dashboard</span
+              >
+              <span class="text-sm font-semibold">Dashboard</span>
+            </a>
+            <a
+              class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors group"
+              href="browse-jobs.html"
+            >
+              <span
+                class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors"
+                >work</span
+              >
+              <span class="text-sm font-medium">Jobs</span>
+            </a>
+            <a
+              class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors group"
+              href="dashboard.html"
+            >
+              <span
+                class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors"
+                >group</span
+              >
+              <span class="text-sm font-medium">Candidates</span>
+            </a>
+            <a
+              class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors group"
+              href="#"
+            >
+              <div class="relative">
+                <span
+                  class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors"
+                  >chat</span
+                >
+                <span
+                  class="absolute -top-0.5 -right-0.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-[#0d141c]"
+                ></span>
+              </div>
+              <span class="text-sm font-medium">Messages</span>
+            </a>
+            <a
+              class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors group"
+              href="profile.html"
+            >
+              <span
+                class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors"
+                >domain</span
+              >
+              <span class="text-sm font-medium">Company Profile</span>
+            </a>
+          </nav>
+        </div>
+        <div
+          class="mt-auto p-6 border-t border-slate-200 dark:border-slate-800"
+        >
+          <div
+            class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-cover bg-center border border-slate-200 dark:border-slate-700"
+              data-alt="Portrait of a smiling man in a suit"
+              style="
+                background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBkfFlDyuQ1EIyqRQtDakIDbeWdeUcO5k-oqJ_fkFgY0FjBRJdBywfMYx1ZBSDAZhwCCg6G8ArgU1qpnFDna2VB7sWcftGeYRlFB0xt4KWA085L9iW5qyGQEjmKmh2U1uuRWKKYxtbuVcdzSY1HBrC-F3f60uzNuSB49jtisvB3n8iqm8Z6nRAkW3caq2IP3CJqNLAA2plFTrDN-lkojA2lVtdySFheJwpkgfOpGlDR48HfTGM3SWXaZT6XnCwm1wpNAfUCiV0Rd7iM&quot;);
+              "
+            ></div>
+            <div class="flex flex-col overflow-hidden">
+              <span
+                class="text-sm font-bold text-slate-900 dark:text-white truncate"
+                >Acme Corp</span
+              >
+              <span class="text-xs text-slate-500 dark:text-slate-400 truncate"
+                >Hiring Manager</span
+              >
+            </div>
+            <span
+              class="material-symbols-outlined text-slate-400 text-lg ml-auto"
+              >more_vert</span
+            >
+          </div>
+        </div>
+      </aside>
+      <!-- Main Content -->
+      <main class="flex-1 flex flex-col h-full overflow-hidden relative">
+        <!-- Top Header -->
+        <header
+          class="h-16 flex items-center justify-between px-6 lg:px-8 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#101922] z-10"
+        >
+          <!-- Mobile Menu Button (Visible only on small screens) -->
+          <button class="lg:hidden p-2 text-slate-500 dark:text-slate-400">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <!-- Search Bar -->
+          <div class="hidden md:flex flex-1 max-w-md">
+            <div class="relative w-full">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]"
+                >search</span
+              >
+              <input
+                class="w-full bg-slate-100 dark:bg-surface-dark border-none rounded-lg pl-10 pr-4 py-2 text-sm text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:ring-2 focus:ring-primary/50 transition-all"
+                placeholder="Search for jobs, candidates, or keywords..."
+                type="text"
+              />
+            </div>
+          </div>
+          <!-- Right Actions -->
+          <div class="flex items-center gap-4">
+            <button
+              class="relative p-2 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors"
+            >
+              <span class="material-symbols-outlined">notifications</span>
+              <span
+                class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-[#101922]"
+              ></span>
+            </button>
+            <button
+              class="hidden sm:flex items-center justify-center h-9 px-4 rounded-lg bg-primary text-white text-sm font-bold hover:bg-blue-600 transition-colors shadow-sm shadow-blue-500/20"
+            >
+              <span class="material-symbols-outlined text-[18px] mr-2"
+                >add</span
+              >
+              Post a New Job
+            </button>
+          </div>
+        </header>
+        <!-- Scrollable Content -->
+        <div
+          class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark p-6 lg:p-8"
+        >
+          <div class="max-w-[1200px] mx-auto flex flex-col gap-8">
+            <!-- Page Heading -->
+            <div
+              class="flex flex-col md:flex-row md:items-end justify-between gap-4"
+            >
+              <div>
+                <h2
+                  class="text-3xl font-black tracking-tight text-slate-900 dark:text-white mb-2"
+                >
+                  Good morning, Acme Corp
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400 text-base">
+                  Here's what's happening with your hiring pipeline today.
+                </p>
+              </div>
+              <div class="sm:hidden">
+                <button
+                  class="w-full flex items-center justify-center h-10 px-4 rounded-lg bg-primary text-white text-sm font-bold"
+                >
+                  Post a New Job
+                </button>
+              </div>
+            </div>
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <!-- Stat Card 1 -->
+              <div
+                class="bg-white dark:bg-surface-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm"
+              >
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    class="p-2 bg-blue-500/10 dark:bg-blue-500/20 rounded-lg"
+                  >
+                    <span
+                      class="material-symbols-outlined text-blue-600 dark:text-blue-400"
+                      >briefcase_meal</span
+                    >
+                  </div>
+                  <span
+                    class="flex items-center text-emerald-500 text-sm font-medium bg-emerald-500/10 px-2 py-0.5 rounded"
+                  >
+                    <span class="material-symbols-outlined text-[16px] mr-0.5"
+                      >trending_up</span
+                    >
+                    +2%
+                  </span>
+                </div>
+                <h3
+                  class="text-3xl font-bold text-slate-900 dark:text-white mb-1"
+                >
+                  12
+                </h3>
+                <p class="text-slate-500 dark:text-slate-400 font-medium">
+                  Active Jobs
+                </p>
+              </div>
+              <!-- Stat Card 2 -->
+              <div
+                class="bg-white dark:bg-surface-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm"
+              >
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    class="p-2 bg-purple-500/10 dark:bg-purple-500/20 rounded-lg"
+                  >
+                    <span
+                      class="material-symbols-outlined text-purple-600 dark:text-purple-400"
+                      >group</span
+                    >
+                  </div>
+                  <span
+                    class="flex items-center text-emerald-500 text-sm font-medium bg-emerald-500/10 px-2 py-0.5 rounded"
+                  >
+                    <span class="material-symbols-outlined text-[16px] mr-0.5"
+                      >trending_up</span
+                    >
+                    +15%
+                  </span>
+                </div>
+                <h3
+                  class="text-3xl font-bold text-slate-900 dark:text-white mb-1"
+                >
+                  145
+                </h3>
+                <p class="text-slate-500 dark:text-slate-400 font-medium">
+                  Total Applicants
+                </p>
+              </div>
+              <!-- Stat Card 3 -->
+              <div
+                class="bg-white dark:bg-surface-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm"
+              >
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    class="p-2 bg-orange-500/10 dark:bg-orange-500/20 rounded-lg"
+                  >
+                    <span
+                      class="material-symbols-outlined text-orange-600 dark:text-orange-400"
+                      >calendar_today</span
+                    >
+                  </div>
+                  <span
+                    class="flex items-center text-emerald-500 text-sm font-medium bg-emerald-500/10 px-2 py-0.5 rounded"
+                  >
+                    <span class="material-symbols-outlined text-[16px] mr-0.5"
+                      >trending_up</span
+                    >
+                    +100%
+                  </span>
+                </div>
+                <h3
+                  class="text-3xl font-bold text-slate-900 dark:text-white mb-1"
+                >
+                  8
+                </h3>
+                <p class="text-slate-500 dark:text-slate-400 font-medium">
+                  Interviews Today
+                </p>
+              </div>
+            </div>
+            <!-- Main Dashboard Split -->
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+              <!-- Left Column: Active Job Postings -->
+              <div class="xl:col-span-2 flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+                    Active Job Postings
+                  </h3>
+                  <a
+                    class="text-sm font-semibold text-primary hover:text-blue-400"
+                    href="#"
+                    >View All</a
+                  >
+                </div>
+                <div
+                  class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden"
+                >
+                  <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                      <thead>
+                        <tr
+                          class="border-b border-slate-200 dark:border-slate-700/50 text-xs uppercase text-slate-500 dark:text-slate-400 font-bold tracking-wider"
+                        >
+                          <th class="px-6 py-4">Job Title</th>
+                          <th class="px-6 py-4">Status</th>
+                          <th class="px-6 py-4 text-center">Applicants</th>
+                          <th class="px-6 py-4">Days Left</th>
+                          <th class="px-6 py-4 text-right">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="divide-y divide-slate-200 dark:divide-slate-700/50"
+                      >
+                        <!-- Row 1 -->
+                        <tr
+                          class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                        >
+                          <td class="px-6 py-4">
+                            <div class="flex flex-col">
+                              <span
+                                class="text-sm font-bold text-slate-900 dark:text-white"
+                                >Senior Product Designer</span
+                              >
+                              <span
+                                class="text-xs text-slate-500 dark:text-slate-400"
+                                >Design Team • Remote</span
+                              >
+                            </div>
+                          </td>
+                          <td class="px-6 py-4">
+                            <span
+                              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-500/10 text-emerald-800 dark:text-emerald-400"
+                            >
+                              Active
+                            </span>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div class="flex flex-col items-center">
+                              <span
+                                class="text-sm font-bold text-slate-900 dark:text-white"
+                                >45</span
+                              >
+                              <span class="text-xs text-primary font-medium"
+                                >+5 New</span
+                              >
+                            </div>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div
+                              class="w-full max-w-[100px] flex flex-col gap-1"
+                            >
+                              <div class="flex justify-between text-xs">
+                                <span class="text-slate-500 dark:text-slate-400"
+                                  >28 days</span
+                                >
+                              </div>
+                              <div
+                                class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"
+                              >
+                                <div
+                                  class="h-full bg-primary w-[20%] rounded-full"
+                                ></div>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="px-6 py-4 text-right">
+                            <button
+                              class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-1"
+                            >
+                              <span
+                                class="material-symbols-outlined text-[20px]"
+                                >more_horiz</span
+                              >
+                            </button>
+                          </td>
+                        </tr>
+                        <!-- Row 2 -->
+                        <tr
+                          class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                        >
+                          <td class="px-6 py-4">
+                            <div class="flex flex-col">
+                              <span
+                                class="text-sm font-bold text-slate-900 dark:text-white"
+                                >Backend Engineer (Go)</span
+                              >
+                              <span
+                                class="text-xs text-slate-500 dark:text-slate-400"
+                                >Engineering • Remote</span
+                              >
+                            </div>
+                          </td>
+                          <td class="px-6 py-4">
+                            <span
+                              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-500/10 text-emerald-800 dark:text-emerald-400"
+                            >
+                              Active
+                            </span>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div class="flex flex-col items-center">
+                              <span
+                                class="text-sm font-bold text-slate-900 dark:text-white"
+                                >12</span
+                              >
+                              <span
+                                class="text-xs text-slate-500 dark:text-slate-500"
+                                >0 New</span
+                              >
+                            </div>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div
+                              class="w-full max-w-[100px] flex flex-col gap-1"
+                            >
+                              <div class="flex justify-between text-xs">
+                                <span class="text-slate-500 dark:text-slate-400"
+                                  >14 days</span
+                                >
+                              </div>
+                              <div
+                                class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"
+                              >
+                                <div
+                                  class="h-full bg-yellow-500 w-[50%] rounded-full"
+                                ></div>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="px-6 py-4 text-right">
+                            <button
+                              class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-1"
+                            >
+                              <span
+                                class="material-symbols-outlined text-[20px]"
+                                >more_horiz</span
+                              >
+                            </button>
+                          </td>
+                        </tr>
+                        <!-- Row 3 -->
+                        <tr
+                          class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                        >
+                          <td class="px-6 py-4">
+                            <div class="flex flex-col">
+                              <span
+                                class="text-sm font-bold text-slate-900 dark:text-white"
+                                >Marketing Manager</span
+                              >
+                              <span
+                                class="text-xs text-slate-500 dark:text-slate-400"
+                                >Marketing • London</span
+                              >
+                            </div>
+                          </td>
+                          <td class="px-6 py-4">
+                            <span
+                              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 dark:bg-amber-500/10 text-amber-800 dark:text-amber-400"
+                            >
+                              Paused
+                            </span>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div class="flex flex-col items-center">
+                              <span
+                                class="text-sm font-bold text-slate-900 dark:text-white"
+                                >88</span
+                              >
+                              <span
+                                class="text-xs text-slate-500 dark:text-slate-500"
+                                >2 New</span
+                              >
+                            </div>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div
+                              class="w-full max-w-[100px] flex flex-col gap-1"
+                            >
+                              <div class="flex justify-between text-xs">
+                                <span class="text-slate-500 dark:text-slate-400"
+                                  >Paused</span
+                                >
+                              </div>
+                              <div
+                                class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"
+                              >
+                                <div
+                                  class="h-full bg-slate-400 w-full rounded-full opacity-30"
+                                ></div>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="px-6 py-4 text-right">
+                            <button
+                              class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-1"
+                            >
+                              <span
+                                class="material-symbols-outlined text-[20px]"
+                                >more_horiz</span
+                              >
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!-- Right Column: Recent Candidates -->
+              <div class="xl:col-span-1 flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+                    Recent Top Candidates
+                  </h3>
+                  <a
+                    class="text-sm font-semibold text-primary hover:text-blue-400"
+                    href="#"
+                    >See All</a
+                  >
+                </div>
+                <div
+                  class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-4 flex flex-col gap-4"
+                >
+                  <!-- Candidate Card 1 -->
+                  <div
+                    class="group flex gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-[#202b36] transition-colors cursor-pointer"
+                  >
+                    <div
+                      class="w-12 h-12 rounded-full bg-cover bg-center flex-shrink-0"
+                      data-alt="Woman with bright smile"
+                      style="
+                        background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCgHpaYd7moJ-oc5iEJdGMPeI8TS-evUGOvh6MiKJBV93-lrDFCS9cwbCDJ3S7rUenEz1trz7RHsBp6xZWLGcLyduJiumw7ziis8P464FqbcZO-MQ_PMm6Z7SXOMWF_fho4lXWO4OcL7IpPeLgoD_vuhaKVab4xXuhdtK306Y7XgZUFsY-OdgYJg66cc3XbPLNRqKG39KEWUs49GZZx0LAs7THQxUYLHxoUmu6kkm1syXFZgIrSNWHjNJN5PT-FPnQo6OIM91Vate6X&quot;);
+                      "
+                    >
+                      <div
+                        class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-surface-dark rounded-full translate-x-1 translate-y-1"
+                      ></div>
+                    </div>
+                    <div class="flex flex-col flex-1 min-w-0">
+                      <div class="flex justify-between items-start">
+                        <h4
+                          class="text-sm font-bold text-slate-900 dark:text-white truncate"
+                        >
+                          Sarah Jenkins
+                        </h4>
+                        <span
+                          class="text-[10px] text-emerald-500 font-bold bg-emerald-500/10 px-1.5 py-0.5 rounded"
+                          >98% Match</span
+                        >
+                      </div>
+                      <p
+                        class="text-xs text-slate-500 dark:text-slate-400 mb-2 truncate"
+                      >
+                        Senior UX Researcher
+                      </p>
+                      <div class="flex flex-wrap gap-1.5">
+                        <span
+                          class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                          >Figma</span
+                        >
+                        <span
+                          class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                          >User Testing</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="h-px bg-slate-100 dark:bg-slate-700/50 w-full"
+                  ></div>
+                  <!-- Candidate Card 2 -->
+                  <div
+                    class="group flex gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-[#202b36] transition-colors cursor-pointer"
+                  >
+                    <div
+                      class="w-12 h-12 rounded-full bg-cover bg-center flex-shrink-0"
+                      data-alt="Young man with glasses"
+                      style="
+                        background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCJ07rmA6EG_IJiCUQojlcxicJ7mMaihS7-bWL2Ns6Oq4UVn-wTDD4sdCjZB3rnznJwjyn1FDelV4JmdUf-SezHG2ZvCU7fMrEOAga20m5p5lkY97t9kI5oqXIFd2H4gRlorF2sMMiZjr7guVFYtEFgZ4O27FNV9Pw4HsMTzCtaeR9fjY5BzCYdIcvXjn-UWykJRcxC5v2mJyAWOuFwiGK2yufJXGexQve2r7y9IUfN-vbiUjFNxxkC0Dx683Muqskkgu-3KwsUtmRA&quot;);
+                      "
+                    ></div>
+                    <div class="flex flex-col flex-1 min-w-0">
+                      <div class="flex justify-between items-start">
+                        <h4
+                          class="text-sm font-bold text-slate-900 dark:text-white truncate"
+                        >
+                          Michael Chen
+                        </h4>
+                        <span
+                          class="text-[10px] text-emerald-500 font-bold bg-emerald-500/10 px-1.5 py-0.5 rounded"
+                          >92% Match</span
+                        >
+                      </div>
+                      <p
+                        class="text-xs text-slate-500 dark:text-slate-400 mb-2 truncate"
+                      >
+                        Full Stack Developer
+                      </p>
+                      <div class="flex flex-wrap gap-1.5">
+                        <span
+                          class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                          >React</span
+                        >
+                        <span
+                          class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                          >Node.js</span
+                        >
+                        <span
+                          class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                          >+3</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="h-px bg-slate-100 dark:bg-slate-700/50 w-full"
+                  ></div>
+                  <!-- Candidate Card 3 -->
+                  <div
+                    class="group flex gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-[#202b36] transition-colors cursor-pointer"
+                  >
+                    <div
+                      class="w-12 h-12 rounded-full bg-cover bg-center flex-shrink-0"
+                      data-alt="Smiling woman looking at camera"
+                      style="
+                        background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDrd1-YcU5Ru5CZkOC4C5dniy3Y82vRGga9CTYQ-d68taM2_IsIinEh8tU7jIIn8lDoB0S_RdoYMXp2yd-9BL_EUoQGBRYoaqFrtNSnGyP87gAI5DHfQ4dpvSjI5ybPiCiQYm0NWxy0DvSfZ3FLcFKL3ZjXC1OfALdmDh1PQeu1nBk8qyYdOourgOqtdBZXRkG3TM88RXvfmrCn2dpD-zB6J_AoPCvxoNQMB2JdOFYJAqojolOtVWK4zeOSL-DyDpxSpbWsSa574aSo&quot;);
+                      "
+                    ></div>
+                    <div class="flex flex-col flex-1 min-w-0">
+                      <div class="flex justify-between items-start">
+                        <h4
+                          class="text-sm font-bold text-slate-900 dark:text-white truncate"
+                        >
+                          Elena Rodriguez
+                        </h4>
+                        <span
+                          class="text-[10px] text-blue-500 font-bold bg-blue-500/10 px-1.5 py-0.5 rounded"
+                          >Potential</span
+                        >
+                      </div>
+                      <p
+                        class="text-xs text-slate-500 dark:text-slate-400 mb-2 truncate"
+                      >
+                        Product Manager
+                      </p>
+                      <div class="flex flex-wrap gap-1.5">
+                        <span
+                          class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                          >Strategy</span
+                        >
+                        <span
+                          class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300"
+                          >Agile</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    class="mt-2 w-full py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                  >
+                    View All Candidates
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="mt-12 mb-4 text-center">
+            <p class="text-xs text-slate-500 dark:text-slate-600">
+              © 2023 TalentFlow Inc. All rights reserved.
+            </p>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

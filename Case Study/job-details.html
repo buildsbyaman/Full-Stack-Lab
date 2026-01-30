@@ -1,0 +1,656 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Job Details View</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind Configuration -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2b8cee",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "card-dark": "#1c232e", // Slightly lighter than background-dark for cards
+              "border-dark": "#2d3748",
+            },
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+              body: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Manrope", sans-serif;
+      }
+      /* Custom scrollbar for better aesthetics */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #101922;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #2d3748;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #4a5568;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col"
+  >
+    <!-- TopNavBar -->
+    <header
+      class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-border-dark bg-white dark:bg-[#151c24] px-4 py-3 md:px-10"
+    >
+      <div class="flex items-center gap-8">
+        <a
+          href="index.html"
+          class="flex items-center gap-2 text-slate-900 dark:text-white"
+        >
+          <div
+            class="size-8 rounded bg-primary flex items-center justify-center text-white"
+          >
+            <span class="material-symbols-outlined text-[20px]">work</span>
+          </div>
+          <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">
+            RemoteHires
+          </h2>
+        </a>
+        <!-- Search Bar (Hidden on mobile) -->
+        <label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+          <div
+            class="flex w-full flex-1 items-stretch rounded-lg h-full border border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-card-dark transition-colors focus-within:border-primary"
+          >
+            <div class="text-slate-400 flex items-center justify-center pl-3">
+              <span class="material-symbols-outlined text-[20px]">search</span>
+            </div>
+            <input
+              class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none h-full placeholder:text-slate-400 px-3 text-sm font-normal leading-normal"
+              placeholder="Search jobs..."
+            />
+          </div>
+        </label>
+      </div>
+      <div class="flex items-center gap-4 md:gap-8">
+        <div class="hidden md:flex items-center gap-6">
+          <a
+            class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+            href="browse-jobs.html"
+            >Find Jobs</a
+          >
+          <a
+            class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+            href="employer-dashboard.html"
+            >Companies</a
+          >
+          <a
+            class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+            href="#"
+            >Salaries</a
+          >
+        </div>
+        <div class="flex gap-3 items-center">
+          <button
+            class="hidden sm:flex h-10 px-4 bg-primary hover:bg-blue-600 transition-colors text-white text-sm font-bold items-center justify-center rounded-lg"
+            onclick="window.location.href = 'employer-dashboard.html'"
+          >
+            Post a Job
+          </button>
+          <button
+            class="flex size-10 items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+          <div
+            class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-slate-200 dark:border-slate-700 cursor-pointer"
+            onclick="window.location.href = 'profile.html'"
+            data-alt="User profile avatar showing a smiling person"
+            style="
+              background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCmXzWJtFq0iymaGEz5PBRwJgFlBG0m1gxk2SKg5kibBpzXq5Kh09ovlMmt1wqF_kE-RNC8kpiqECPkrMTLP6vXP6_g0-Aat9MVMmRnXFJHKSJObKHGYhn4SkvSTYzzyyU64RPGJeXZedG1RxHIBfdS1prWHfasr667ZcPBOsyQlXb1yYhXOsNOUfd8OHLmt7QGOBIOzClSq-HLRf5uEiWEqQKFZ_pY3nq9p8ccnxWZaxBxnnE2nnHJ1CZ7WikOaMyfPszeisUBRXjf&quot;);
+            "
+          ></div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content Area -->
+    <main class="flex-grow w-full max-w-[1200px] mx-auto px-4 md:px-6 py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- LEFT COLUMN: Content -->
+        <div class="lg:col-span-8 flex flex-col gap-8">
+          <!-- Job Header (Combined ProfileHeader logic) -->
+          <div
+            class="bg-white dark:bg-card-dark rounded-xl p-6 border border-slate-200 dark:border-border-dark shadow-sm"
+          >
+            <div
+              class="flex flex-col sm:flex-row gap-5 items-start sm:items-center"
+            >
+              <div class="size-20 min-w-[80px] rounded-xl bg-white p-1">
+                <div
+                  class="w-full h-full rounded-lg bg-cover bg-center border border-slate-100 dark:border-slate-700"
+                  data-alt="Acme Corp company logo graphic"
+                  style="
+                    background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBj8gadtrjMluLxJ1s-H5et2GHoZKm_ngo5wL17yo3nViQBCfht_og7yRg5XQOq5debQ6FfLFWdqvEnMl7i6tcu5za6YRqCufenWQ4b6xd3SAgKNAnBtuB_x0FvepAyKtoI4JroUfAuEPpuIA-_8u3fUnk8EAUNbJSQkVlivSV_Nsbvl7WO7rB0oifK9lj-ta0zLKqDojzjcNj_GUAtmiQh6Wn23YxAWMNkNUBr8PNSdArZCU7iiW73Gs3vEreYa9MGAlSoZERS-Tge&quot;);
+                  "
+                ></div>
+              </div>
+              <div class="flex flex-col flex-1 gap-1">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h1
+                    class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white"
+                  >
+                    Senior Product Designer
+                  </h1>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-xs font-semibold text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800"
+                  >
+                    <span class="material-symbols-outlined text-[14px]"
+                      >verified</span
+                    >
+                    Verified
+                  </span>
+                </div>
+                <div
+                  class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-base"
+                >
+                  <span class="font-medium text-slate-900 dark:text-slate-200"
+                    >Acme Corp</span
+                  >
+                  <span>•</span>
+                  <span>Design Team</span>
+                </div>
+                <div
+                  class="flex flex-wrap gap-y-2 gap-x-4 mt-2 text-sm text-slate-500 dark:text-slate-400"
+                >
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[18px]"
+                      >public</span
+                    >
+                    Remote (Worldwide)
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[18px]"
+                      >schedule</span
+                    >
+                    Full-time
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[18px]"
+                      >history</span
+                    >
+                    Posted 2 days ago
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Rich Text Sections -->
+          <div
+            class="bg-white dark:bg-card-dark rounded-xl p-6 md:p-8 border border-slate-200 dark:border-border-dark shadow-sm"
+          >
+            <!-- About -->
+            <section class="mb-10">
+              <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">
+                About the Role
+              </h2>
+              <div
+                class="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed"
+              >
+                <p>
+                  We are looking for a visionary Senior Product Designer to lead
+                  our core product team. You will be responsible for the
+                  end-to-end design process, from research and ideation to
+                  high-fidelity prototyping and visual polish.
+                </p>
+                <p>
+                  At Acme Corp, we believe design is not just about how things
+                  look, but how they work. You will collaborate closely with
+                  product managers, engineers, and researchers to define the
+                  future of our SaaS platform used by millions worldwide.
+                </p>
+              </div>
+            </section>
+            <!-- Responsibilities -->
+            <section class="mb-10">
+              <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">
+                Responsibilities
+              </h2>
+              <ul class="space-y-3">
+                <li
+                  class="flex items-start gap-3 text-slate-600 dark:text-slate-300"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary mt-0.5 text-[20px]"
+                    >check_circle</span
+                  >
+                  <span
+                    >Lead design projects across the entire product lifecycle
+                    and multiple product launches.</span
+                  >
+                </li>
+                <li
+                  class="flex items-start gap-3 text-slate-600 dark:text-slate-300"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary mt-0.5 text-[20px]"
+                    >check_circle</span
+                  >
+                  <span
+                    >Partner with engineering to ensure high-quality
+                    implementation and user experience.</span
+                  >
+                </li>
+                <li
+                  class="flex items-start gap-3 text-slate-600 dark:text-slate-300"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary mt-0.5 text-[20px]"
+                    >check_circle</span
+                  >
+                  <span
+                    >Create and maintain our design system, ensuring consistency
+                    across all touchpoints.</span
+                  >
+                </li>
+                <li
+                  class="flex items-start gap-3 text-slate-600 dark:text-slate-300"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary mt-0.5 text-[20px]"
+                    >check_circle</span
+                  >
+                  <span
+                    >Mentor junior designers and contribute to our internal
+                    design culture.</span
+                  >
+                </li>
+              </ul>
+            </section>
+            <!-- Requirements -->
+            <section class="mb-10">
+              <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">
+                Requirements
+              </h2>
+              <ul class="space-y-3">
+                <li
+                  class="flex items-start gap-3 text-slate-600 dark:text-slate-300"
+                >
+                  <div class="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
+                  <span
+                    >5+ years of experience in product design for web and mobile
+                    applications.</span
+                  >
+                </li>
+                <li
+                  class="flex items-start gap-3 text-slate-600 dark:text-slate-300"
+                >
+                  <div class="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
+                  <span
+                    >Deep proficiency in Figma, prototyping tools, and Adobe
+                    Creative Suite.</span
+                  >
+                </li>
+                <li
+                  class="flex items-start gap-3 text-slate-600 dark:text-slate-300"
+                >
+                  <div class="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
+                  <span
+                    >Strong portfolio showcasing problem-solving skills and high
+                    visual fidelity.</span
+                  >
+                </li>
+                <li
+                  class="flex items-start gap-3 text-slate-600 dark:text-slate-300"
+                >
+                  <div class="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
+                  <span
+                    >Excellent communication skills to articulate design
+                    decisions to stakeholders.</span
+                  >
+                </li>
+              </ul>
+            </section>
+            <!-- Benefits (Grid) -->
+            <section class="mb-2">
+              <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6">
+                Benefits &amp; Perks
+              </h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Perk 1 -->
+                <div
+                  class="flex items-center gap-4 p-4 rounded-lg bg-slate-50 dark:bg-[#151c24] border border-slate-100 dark:border-border-dark"
+                >
+                  <div
+                    class="bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 p-2 rounded-lg"
+                  >
+                    <span class="material-symbols-outlined">payments</span>
+                  </div>
+                  <div>
+                    <h3
+                      class="font-bold text-slate-900 dark:text-white text-sm"
+                    >
+                      Competitive Salary
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">
+                      Top of market pay
+                    </p>
+                  </div>
+                </div>
+                <!-- Perk 2 -->
+                <div
+                  class="flex items-center gap-4 p-4 rounded-lg bg-slate-50 dark:bg-[#151c24] border border-slate-100 dark:border-border-dark"
+                >
+                  <div
+                    class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 p-2 rounded-lg"
+                  >
+                    <span class="material-symbols-outlined">ecg_heart</span>
+                  </div>
+                  <div>
+                    <h3
+                      class="font-bold text-slate-900 dark:text-white text-sm"
+                    >
+                      Health Insurance
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">
+                      Full medical &amp; dental
+                    </p>
+                  </div>
+                </div>
+                <!-- Perk 3 -->
+                <div
+                  class="flex items-center gap-4 p-4 rounded-lg bg-slate-50 dark:bg-[#151c24] border border-slate-100 dark:border-border-dark"
+                >
+                  <div
+                    class="bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 p-2 rounded-lg"
+                  >
+                    <span class="material-symbols-outlined">beach_access</span>
+                  </div>
+                  <div>
+                    <h3
+                      class="font-bold text-slate-900 dark:text-white text-sm"
+                    >
+                      Unlimited PTO
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">
+                      Flexible vacation policy
+                    </p>
+                  </div>
+                </div>
+                <!-- Perk 4 -->
+                <div
+                  class="flex items-center gap-4 p-4 rounded-lg bg-slate-50 dark:bg-[#151c24] border border-slate-100 dark:border-border-dark"
+                >
+                  <div
+                    class="bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 p-2 rounded-lg"
+                  >
+                    <span class="material-symbols-outlined">laptop_mac</span>
+                  </div>
+                  <div>
+                    <h3
+                      class="font-bold text-slate-900 dark:text-white text-sm"
+                    >
+                      Home Office
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">
+                      $2k setup stipend
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <!-- Company Spotlight -->
+          <div
+            class="bg-white dark:bg-card-dark rounded-xl p-6 border border-slate-200 dark:border-border-dark shadow-sm"
+          >
+            <h3
+              class="text-sm uppercase tracking-wider text-slate-500 font-bold mb-4"
+            >
+              About the Company
+            </h3>
+            <div class="flex flex-col md:flex-row gap-6 items-start">
+              <div
+                class="size-16 min-w-[64px] rounded-lg bg-white p-1 border border-slate-100 dark:border-slate-700"
+              >
+                <div
+                  class="w-full h-full rounded bg-cover bg-center"
+                  data-alt="Acme Corp small logo"
+                  style="
+                    background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuClVDM0Ikbr-Nz87m_XwZUCUn99jBGLOLF37zrkE-8aAxiJ_3KFq55ycLfJrZs-WhH_Zn_kdeKNS3k7SjWxVpXenWGA5g1O3k5PDbhfsaLruviRM94TA8qzd_rmlYO251vtIDeT6H8zlb7nIoLf56IXD7Gb4_SiOxlLUhOw7Air83LJ0_SYqJiSlP0hhJIJwcxyU9nu3IdyugZkYQllroZcDkGJauRHvHL9vvwe1HilXAK5CTwFXTWDMR_au0z4NiYLIRPQ--5aBdiL&quot;);
+                  "
+                ></div>
+              </div>
+              <div class="flex-1">
+                <h4
+                  class="text-lg font-bold text-slate-900 dark:text-white mb-2"
+                >
+                  Acme Corp
+                </h4>
+                <p
+                  class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4"
+                >
+                  Acme Corp is a leading technology company focused on building
+                  tools for the creator economy. We are a remote-first team of
+                  150+ people distributed across 20 countries. Our mission is to
+                  empower creators to build sustainable businesses.
+                </p>
+                <a
+                  class="inline-flex items-center text-primary hover:text-blue-500 font-bold text-sm"
+                  href="#"
+                >
+                  View Company Profile
+                  <span class="material-symbols-outlined text-[18px] ml-1"
+                    >arrow_forward</span
+                  >
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- RIGHT COLUMN: Sticky Sidebar -->
+        <div class="lg:col-span-4">
+          <div class="sticky top-24 flex flex-col gap-6">
+            <!-- Apply Card -->
+            <div
+              class="bg-white dark:bg-card-dark rounded-xl p-6 border border-slate-200 dark:border-border-dark shadow-sm"
+            >
+              <button
+                class="w-full bg-primary hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg mb-3 transition-colors flex justify-center items-center gap-2"
+              >
+                Apply Now
+                <span class="material-symbols-outlined text-[20px]">send</span>
+              </button>
+              <button
+                class="w-full bg-white dark:bg-transparent border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-white font-bold py-3 px-4 rounded-lg transition-colors flex justify-center items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >bookmark_border</span
+                >
+                Save Job
+              </button>
+              <div class="my-6 h-px bg-slate-200 dark:bg-border-dark"></div>
+              <!-- Quick Stats Grid (Vertical) -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-start gap-4">
+                  <div class="text-slate-400 dark:text-slate-500">
+                    <span class="material-symbols-outlined">attach_money</span>
+                  </div>
+                  <div>
+                    <p
+                      class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide"
+                    >
+                      Salary
+                    </p>
+                    <p class="text-slate-900 dark:text-white font-bold">
+                      $120k - $160k
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <div class="text-slate-400 dark:text-slate-500">
+                    <span class="material-symbols-outlined">public</span>
+                  </div>
+                  <div>
+                    <p
+                      class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide"
+                    >
+                      Location
+                    </p>
+                    <p class="text-slate-900 dark:text-white font-bold">
+                      Remote (US/EU)
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <div class="text-slate-400 dark:text-slate-500">
+                    <span class="material-symbols-outlined">work</span>
+                  </div>
+                  <div>
+                    <p
+                      class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide"
+                    >
+                      Job Type
+                    </p>
+                    <p class="text-slate-900 dark:text-white font-bold">
+                      Full-time
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <div class="text-slate-400 dark:text-slate-500">
+                    <span class="material-symbols-outlined">school</span>
+                  </div>
+                  <div>
+                    <p
+                      class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide"
+                    >
+                      Experience
+                    </p>
+                    <p class="text-slate-900 dark:text-white font-bold">
+                      Senior (5+ Years)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Skills / Tags -->
+            <div
+              class="bg-white dark:bg-card-dark rounded-xl p-6 border border-slate-200 dark:border-border-dark shadow-sm"
+            >
+              <h3 class="text-slate-900 dark:text-white font-bold text-sm mb-4">
+                Skills &amp; Tech Stack
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700"
+                  >Figma</span
+                >
+                <span
+                  class="px-3 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700"
+                  >React Knowledge</span
+                >
+                <span
+                  class="px-3 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700"
+                  >Design Systems</span
+                >
+                <span
+                  class="px-3 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700"
+                  >Prototyping</span
+                >
+                <span
+                  class="px-3 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700"
+                  >SaaS</span
+                >
+                <span
+                  class="px-3 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700"
+                  >Agile</span
+                >
+              </div>
+            </div>
+            <!-- Share -->
+            <div
+              class="bg-white dark:bg-card-dark rounded-xl p-6 border border-slate-200 dark:border-border-dark shadow-sm"
+            >
+              <h3 class="text-slate-900 dark:text-white font-bold text-sm mb-4">
+                Share this job
+              </h3>
+              <div class="flex gap-3">
+                <button
+                  class="flex-1 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center transition-colors"
+                >
+                  <span class="text-sm font-bold">Copy Link</span>
+                </button>
+                <button
+                  class="size-10 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-900/50 dark:hover:text-blue-400 text-slate-600 dark:text-slate-300 flex items-center justify-center transition-colors"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >mail</span
+                  >
+                </button>
+                <button
+                  class="size-10 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-900/50 dark:hover:text-blue-400 text-slate-600 dark:text-slate-300 flex items-center justify-center transition-colors"
+                >
+                  <svg
+                    class="w-5 h-5 fill-current"
+                    viewbox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h11.05v-9.96h-3.36v-3.88h3.36V7.27c0-3.32 2.03-5.13 4.99-5.13 1.42 0 2.64.1 3 .15v3.45h-2.06c-1.61 0-1.93.76-1.93 1.88v2.48h3.84l-.5 3.88h-3.34V24h6.91c.97 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0z"
+                    ></path>
+                  </svg>
+                </button>
+                <button
+                  class="size-10 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-900/50 dark:hover:text-blue-400 text-slate-600 dark:text-slate-300 flex items-center justify-center transition-colors"
+                >
+                  <svg
+                    class="w-5 h-5 fill-current"
+                    viewbox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M22.92 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.83 4.5 17.72 4 16.46 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.75 9.1 5.63 7.42 3.53 4.85c-.37.64-.58 1.39-.58 2.19 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21-.36.1-.74.15-1.13.15-.27 0-.54-.03-.8-.08.54 1.71 2.12 2.95 4 2.99-1.48 1.15-3.32 1.84-5.33 1.84-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,679 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Browse Remote Jobs</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols_Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2b8cee",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "surface-dark": "#1c242c",
+            },
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #101922;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #2b3642;
+        border-radius: 3px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #3b4754;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased min-h-screen flex flex-col"
+  >
+    <header
+      class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-[#283039] bg-white dark:bg-[#111418] px-4 py-3 md:px-10"
+    >
+      <div class="mx-auto flex max-w-7xl items-center justify-between">
+        <div class="flex items-center gap-4">
+          <a href="index.html" class="flex items-center gap-2">
+            <div
+              class="flex size-8 items-center justify-center rounded-lg bg-primary text-white"
+            >
+              <span class="material-symbols-outlined text-2xl">work</span>
+            </div>
+            <h2
+              class="text-xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white"
+            >
+              RemoteBoard
+            </h2>
+          </a>
+        </div>
+        <div class="hidden flex-1 justify-center md:flex">
+          <nav class="flex gap-8">
+            <a
+              class="text-sm font-medium text-primary dark:text-primary"
+              href="browse-jobs.html"
+              >Jobs</a
+            >
+            <a
+              class="text-sm font-medium text-slate-600 hover:text-primary dark:text-gray-300 dark:hover:text-white"
+              href="employer-dashboard.html"
+              >Companies</a
+            >
+            <a
+              class="text-sm font-medium text-slate-600 hover:text-primary dark:text-gray-300 dark:hover:text-white"
+              href="#"
+              >Salaries</a
+            >
+            <a
+              class="text-sm font-medium text-slate-600 hover:text-primary dark:text-gray-300 dark:hover:text-white"
+              href="#"
+              >Community</a
+            >
+          </nav>
+        </div>
+        <div class="flex items-center gap-4">
+          <button
+            class="hidden h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white transition hover:bg-blue-600 sm:flex"
+            onclick="window.location.href = 'employer-dashboard.html'"
+          >
+            Post a Job
+          </button>
+          <button
+            class="flex size-10 items-center justify-center rounded-lg bg-gray-100 dark:bg-[#283039] text-slate-600 dark:text-white hover:bg-gray-200 dark:hover:bg-[#3b4754] transition"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+          <div
+            class="size-10 rounded-full bg-cover bg-center cursor-pointer"
+            onclick="window.location.href = 'profile.html'"
+            data-alt="User profile picture placeholder"
+            style="
+              background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCmkkbV9khZ5ykSx33YMVcgDvn3lCLbLNGv3TYi9_913gdOnpgWRhq67xKhcWzH2K3diSWf4AImppsRfQ5BrgIzQ1upK3j6yTFivV0F_NUxMR2lk5CPvbveoB4dU1-AWJ5hS76_ryPS8N2uJ91ZrHVoByJYvx-I98JtTS_dxJ_d8tgfYERcG77s8F-9ShH20NH_bvlaA-T38z626AnZ39-I6nWnll50IRa2-w73UqUTOx1xuHG3FvE2HFct4N8Jj4O_mTwq99JH5gMe&quot;);
+            "
+          ></div>
+        </div>
+      </div>
+    </header>
+    <div class="flex flex-1 flex-col">
+      <div class="mx-auto w-full max-w-7xl px-4 py-8 md:px-10">
+        <div class="mb-8">
+          <h1
+            class="text-3xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white md:text-4xl"
+          >
+            Find your next remote challenge
+          </h1>
+          <p class="mt-2 text-slate-600 dark:text-[#9dabb9]">
+            Browse thousands of remote jobs at top companies.
+          </p>
+        </div>
+        <div class="flex flex-col gap-8 lg:flex-row">
+          <aside
+            class="w-full shrink-0 lg:sticky lg:top-24 lg:h-[calc(100vh-8rem)] lg:w-64 lg:overflow-y-auto custom-scrollbar"
+          >
+            <div
+              class="flex flex-col gap-6 rounded-xl bg-white dark:bg-surface-dark p-5 shadow-sm border border-gray-100 dark:border-none"
+            >
+              <div>
+                <h3
+                  class="mb-3 text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-[#9dabb9]"
+                >
+                  Job Type
+                </h3>
+                <div class="flex flex-col gap-3">
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input
+                      checked=""
+                      class="size-5 rounded border-gray-300 dark:border-[#3b4754] bg-transparent text-primary focus:ring-primary dark:focus:ring-offset-[#1c242c]"
+                      type="checkbox"
+                    />
+                    <span
+                      class="text-sm font-medium text-slate-700 dark:text-white group-hover:text-primary transition-colors"
+                      >Full-time</span
+                    >
+                  </label>
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input
+                      class="size-5 rounded border-gray-300 dark:border-[#3b4754] bg-transparent text-primary focus:ring-primary dark:focus:ring-offset-[#1c242c]"
+                      type="checkbox"
+                    />
+                    <span
+                      class="text-sm font-medium text-slate-700 dark:text-white group-hover:text-primary transition-colors"
+                      >Contract</span
+                    >
+                  </label>
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input
+                      class="size-5 rounded border-gray-300 dark:border-[#3b4754] bg-transparent text-primary focus:ring-primary dark:focus:ring-offset-[#1c242c]"
+                      type="checkbox"
+                    />
+                    <span
+                      class="text-sm font-medium text-slate-700 dark:text-white group-hover:text-primary transition-colors"
+                      >Freelance</span
+                    >
+                  </label>
+                </div>
+              </div>
+              <hr class="border-gray-200 dark:border-[#283039]" />
+              <div>
+                <h3
+                  class="mb-3 text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-[#9dabb9]"
+                >
+                  Salary Range
+                </h3>
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="flex justify-between text-xs text-slate-600 dark:text-white font-medium"
+                  >
+                    <span>$50k</span>
+                    <span>$200k+</span>
+                  </div>
+                  <input
+                    class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 dark:bg-[#3b4754] accent-primary"
+                    max="200"
+                    min="50"
+                    type="range"
+                    value="120"
+                  />
+                </div>
+              </div>
+              <hr class="border-gray-200 dark:border-[#283039]" />
+              <div>
+                <h3
+                  class="mb-3 text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-[#9dabb9]"
+                >
+                  Experience Level
+                </h3>
+                <div class="flex flex-col gap-3">
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input
+                      class="size-5 border-gray-300 dark:border-[#3b4754] bg-transparent text-primary focus:ring-primary dark:focus:ring-offset-[#1c242c]"
+                      name="experience"
+                      type="radio"
+                    />
+                    <span
+                      class="text-sm font-medium text-slate-700 dark:text-white group-hover:text-primary transition-colors"
+                      >Junior</span
+                    >
+                  </label>
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input
+                      checked=""
+                      class="size-5 border-gray-300 dark:border-[#3b4754] bg-transparent text-primary focus:ring-primary dark:focus:ring-offset-[#1c242c]"
+                      name="experience"
+                      type="radio"
+                    />
+                    <span
+                      class="text-sm font-medium text-slate-700 dark:text-white group-hover:text-primary transition-colors"
+                      >Mid-Level</span
+                    >
+                  </label>
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input
+                      class="size-5 border-gray-300 dark:border-[#3b4754] bg-transparent text-primary focus:ring-primary dark:focus:ring-offset-[#1c242c]"
+                      name="experience"
+                      type="radio"
+                    />
+                    <span
+                      class="text-sm font-medium text-slate-700 dark:text-white group-hover:text-primary transition-colors"
+                      >Senior</span
+                    >
+                  </label>
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input
+                      class="size-5 border-gray-300 dark:border-[#3b4754] bg-transparent text-primary focus:ring-primary dark:focus:ring-offset-[#1c242c]"
+                      name="experience"
+                      type="radio"
+                    />
+                    <span
+                      class="text-sm font-medium text-slate-700 dark:text-white group-hover:text-primary transition-colors"
+                      >Lead / Manager</span
+                    >
+                  </label>
+                </div>
+              </div>
+              <hr class="border-gray-200 dark:border-[#283039]" />
+              <div>
+                <h3
+                  class="mb-3 text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-[#9dabb9]"
+                >
+                  Tech Stack
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                  <button
+                    class="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary border border-primary/20"
+                  >
+                    React
+                  </button>
+                  <button
+                    class="rounded-full bg-gray-100 dark:bg-[#283039] px-3 py-1 text-xs font-semibold text-slate-600 dark:text-[#9dabb9] hover:bg-gray-200 dark:hover:bg-[#3b4754] transition"
+                  >
+                    Node.js
+                  </button>
+                  <button
+                    class="rounded-full bg-gray-100 dark:bg-[#283039] px-3 py-1 text-xs font-semibold text-slate-600 dark:text-[#9dabb9] hover:bg-gray-200 dark:hover:bg-[#3b4754] transition"
+                  >
+                    Python
+                  </button>
+                  <button
+                    class="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary border border-primary/20"
+                  >
+                    TypeScript
+                  </button>
+                  <button
+                    class="rounded-full bg-gray-100 dark:bg-[#283039] px-3 py-1 text-xs font-semibold text-slate-600 dark:text-[#9dabb9] hover:bg-gray-200 dark:hover:bg-[#3b4754] transition"
+                  >
+                    Go
+                  </button>
+                  <button
+                    class="rounded-full bg-gray-100 dark:bg-[#283039] px-3 py-1 text-xs font-semibold text-slate-600 dark:text-[#9dabb9] hover:bg-gray-200 dark:hover:bg-[#3b4754] transition"
+                  >
+                    Design
+                  </button>
+                </div>
+              </div>
+            </div>
+          </aside>
+          <main class="flex-1">
+            <div class="mb-6 flex flex-col gap-4 md:flex-row md:items-center">
+              <div class="relative flex-1">
+                <div
+                  class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+                >
+                  <span
+                    class="material-symbols-outlined text-slate-400 dark:text-[#9dabb9]"
+                    >search</span
+                  >
+                </div>
+                <input
+                  class="block w-full rounded-lg border-gray-200 bg-white p-3 pl-10 text-sm text-slate-900 placeholder-slate-400 focus:border-primary focus:ring-primary dark:border-[#3b4754] dark:bg-surface-dark dark:text-white dark:placeholder-[#9dabb9] dark:focus:ring-1"
+                  placeholder="Search by job title, keywords, or company..."
+                  type="text"
+                />
+              </div>
+              <div class="flex items-center gap-3">
+                <label
+                  class="whitespace-nowrap text-sm font-medium text-slate-600 dark:text-[#9dabb9]"
+                  for="sort"
+                  >Sort by:</label
+                >
+                <select
+                  class="block w-full rounded-lg border-gray-200 bg-white py-2.5 pl-3 pr-10 text-sm focus:border-primary focus:ring-primary dark:border-[#3b4754] dark:bg-surface-dark dark:text-white md:w-auto"
+                  id="sort"
+                >
+                  <option>Newest</option>
+                  <option>Relevant</option>
+                  <option>Salary: High to Low</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex flex-col gap-4">
+              <div
+                class="group relative flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:border-primary hover:shadow-md dark:border-[#283039] dark:bg-surface-dark dark:hover:border-primary cursor-pointer"
+                onclick="window.location.href = 'job-details.html'"
+              >
+                <div
+                  class="flex flex-col justify-between gap-4 sm:flex-row sm:items-start"
+                >
+                  <div class="flex gap-4">
+                    <div
+                      class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-black text-white"
+                      data-alt="Vercel Logo black triangle"
+                    >
+                      <svg
+                        class="size-6"
+                        fill="none"
+                        viewbox="0 0 76 65"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M37.5274 0L75.0548 65H0L37.5274 0Z"
+                          fill="white"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h3
+                        class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors"
+                      >
+                        Senior React Developer
+                      </h3>
+                      <p
+                        class="text-sm font-medium text-slate-500 dark:text-[#9dabb9]"
+                      >
+                        Vercel
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 sm:self-start">
+                    <button
+                      class="flex items-center justify-center rounded-lg p-2 text-slate-400 hover:bg-gray-100 hover:text-primary dark:text-gray-500 dark:hover:bg-[#283039]"
+                      onclick="event.stopPropagation()"
+                    >
+                      <span class="material-symbols-outlined">bookmark</span>
+                    </button>
+                    <button
+                      class="rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-blue-600 transition-colors"
+                      onclick="event.stopPropagation()"
+                    >
+                      Apply Now
+                    </button>
+                  </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <span
+                    class="inline-flex items-center gap-1 rounded-md bg-gray-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:bg-[#283039] dark:text-[#9dabb9]"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >public</span
+                    >
+                    Remote
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 rounded-md bg-green-500/10 px-2.5 py-1 text-xs font-medium text-green-600 dark:bg-green-500/20 dark:text-green-400"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >attach_money</span
+                    >
+                    $140k - $180k
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 rounded-md bg-gray-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:bg-[#283039] dark:text-[#9dabb9]"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >schedule</span
+                    >
+                    Full-time
+                  </span>
+                </div>
+                <div
+                  class="mt-2 flex items-center justify-between border-t border-gray-100 pt-4 dark:border-[#283039]"
+                >
+                  <div class="flex -space-x-2 overflow-hidden"></div>
+                  <span
+                    class="text-xs font-medium text-slate-400 dark:text-slate-500"
+                    >Posted 2h ago</span
+                  >
+                </div>
+              </div>
+              <div
+                class="group relative flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:border-primary hover:shadow-md dark:border-[#283039] dark:bg-surface-dark dark:hover:border-primary cursor-pointer"
+                onclick="window.location.href = 'job-details.html'"
+              >
+                <div
+                  class="flex flex-col justify-between gap-4 sm:flex-row sm:items-start"
+                >
+                  <div class="flex gap-4">
+                    <div
+                      class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-[#635BFF] text-white"
+                      data-alt="Stripe Logo S"
+                    >
+                      <span class="font-bold text-xl">S</span>
+                    </div>
+                    <div>
+                      <h3
+                        class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors"
+                      >
+                        Product Designer
+                      </h3>
+                      <p
+                        class="text-sm font-medium text-slate-500 dark:text-[#9dabb9]"
+                      >
+                        Stripe
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 sm:self-start">
+                    <button
+                      class="flex items-center justify-center rounded-lg p-2 text-slate-400 hover:bg-gray-100 hover:text-primary dark:text-gray-500 dark:hover:bg-[#283039]"
+                      onclick="event.stopPropagation()"
+                    >
+                      <span class="material-symbols-outlined">bookmark</span>
+                    </button>
+                    <button
+                      class="rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-blue-600 transition-colors"
+                      onclick="event.stopPropagation()"
+                    >
+                      Apply Now
+                    </button>
+                  </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <span
+                    class="inline-flex items-center gap-1 rounded-md bg-gray-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:bg-[#283039] dark:text-[#9dabb9]"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >public</span
+                    >
+                    Remote (US)
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 rounded-md bg-green-500/10 px-2.5 py-1 text-xs font-medium text-green-600 dark:bg-green-500/20 dark:text-green-400"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >attach_money</span
+                    >
+                    $130k - $160k
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 rounded-md bg-gray-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:bg-[#283039] dark:text-[#9dabb9]"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >schedule</span
+                    >
+                    Full-time
+                  </span>
+                </div>
+                <div
+                  class="mt-2 flex items-center justify-between border-t border-gray-100 pt-4 dark:border-[#283039]"
+                >
+                  <span
+                    class="text-xs font-medium text-slate-400 dark:text-slate-500"
+                    >Posted 5h ago</span
+                  >
+                </div>
+              </div>
+              <div
+                class="group relative flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:border-primary hover:shadow-md dark:border-[#283039] dark:bg-surface-dark dark:hover:border-primary cursor-pointer"
+                onclick="window.location.href = 'job-details.html'"
+              >
+                <div
+                  class="flex flex-col justify-between gap-4 sm:flex-row sm:items-start"
+                >
+                  <div class="flex gap-4">
+                    <div
+                      class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-[#95BF47] text-white"
+                      data-alt="Shopify Logo bag"
+                    >
+                      <span class="material-symbols-outlined"
+                        >shopping_bag</span
+                      >
+                    </div>
+                    <div>
+                      <h3
+                        class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors"
+                      >
+                        Backend Engineer
+                      </h3>
+                      <p
+                        class="text-sm font-medium text-slate-500 dark:text-[#9dabb9]"
+                      >
+                        Shopify
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 sm:self-start">
+                    <button
+                      class="flex items-center justify-center rounded-lg p-2 text-slate-400 hover:bg-gray-100 hover:text-primary dark:text-gray-500 dark:hover:bg-[#283039]"
+                      onclick="event.stopPropagation()"
+                    >
+                      <span class="material-symbols-outlined">bookmark</span>
+                    </button>
+                    <button
+                      class="rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-blue-600 transition-colors"
+                      onclick="event.stopPropagation()"
+                    >
+                      Apply Now
+                    </button>
+                  </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <span
+                    class="inline-flex items-center gap-1 rounded-md bg-gray-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:bg-[#283039] dark:text-[#9dabb9]"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >public</span
+                    >
+                    Remote (Global)
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 rounded-md bg-green-500/10 px-2.5 py-1 text-xs font-medium text-green-600 dark:bg-green-500/20 dark:text-green-400"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >attach_money</span
+                    >
+                    Competitive
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 rounded-md bg-gray-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:bg-[#283039] dark:text-[#9dabb9]"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >schedule</span
+                    >
+                    Contract
+                  </span>
+                </div>
+                <div
+                  class="mt-2 flex items-center justify-between border-t border-gray-100 pt-4 dark:border-[#283039]"
+                >
+                  <span
+                    class="text-xs font-medium text-slate-400 dark:text-slate-500"
+                    >Posted 1d ago</span
+                  >
+                </div>
+              </div>
+              <div
+                class="group relative flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:border-primary hover:shadow-md dark:border-[#283039] dark:bg-surface-dark dark:hover:border-primary cursor-pointer"
+                onclick="window.location.href = 'job-details.html'"
+              >
+                <div
+                  class="flex flex-col justify-between gap-4 sm:flex-row sm:items-start"
+                >
+                  <div class="flex gap-4">
+                    <div
+                      class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-[#E31C5F] text-white"
+                      data-alt="Airbnb Logo A"
+                    >
+                      <span class="font-bold text-xl">A</span>
+                    </div>
+                    <div>
+                      <h3
+                        class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors"
+                      >
+                        Senior iOS Engineer
+                      </h3>
+                      <p
+                        class="text-sm font-medium text-slate-500 dark:text-[#9dabb9]"
+                      >
+                        Airbnb
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 sm:self-start">
+                    <button
+                      class="flex items-center justify-center rounded-lg p-2 text-slate-400 hover:bg-gray-100 hover:text-primary dark:text-gray-500 dark:hover:bg-[#283039]"
+                      onclick="event.stopPropagation()"
+                    >
+                      <span class="material-symbols-outlined">bookmark</span>
+                    </button>
+                    <button
+                      class="rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-blue-600 transition-colors"
+                      onclick="event.stopPropagation()"
+                    >
+                      Apply Now
+                    </button>
+                  </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <span
+                    class="inline-flex items-center gap-1 rounded-md bg-gray-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:bg-[#283039] dark:text-[#9dabb9]"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >public</span
+                    >
+                    Remote (Europe)
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 rounded-md bg-green-500/10 px-2.5 py-1 text-xs font-medium text-green-600 dark:bg-green-500/20 dark:text-green-400"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >attach_money</span
+                    >
+                    €110k - €150k
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 rounded-md bg-gray-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:bg-[#283039] dark:text-[#9dabb9]"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >schedule</span
+                    >
+                    Full-time
+                  </span>
+                </div>
+                <div
+                  class="mt-2 flex items-center justify-between border-t border-gray-100 pt-4 dark:border-[#283039]"
+                >
+                  <span
+                    class="text-xs font-medium text-slate-400 dark:text-slate-500"
+                    >Posted 2d ago</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 flex justify-center">
+              <button
+                class="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-6 py-3 text-sm font-bold text-slate-700 shadow-sm hover:bg-gray-50 dark:border-[#283039] dark:bg-surface-dark dark:text-white dark:hover:bg-[#2b3642]"
+              >
+                Load more jobs
+                <span class="material-symbols-outlined">expand_more</span>
+              </button>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,398 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Remotely - Remote Job Board</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2b8cee",
+              "background-light": "#f6f7f8",
+              "background-dark": "#111418",
+              "surface-dark": "#1C2126",
+              "surface-dark-hover": "#242A31",
+            },
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+              body: ["Noto Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              "2xl": "1rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white font-display overflow-x-hidden antialiased"
+  >
+    <div class="relative flex min-h-screen flex-col">
+      <header
+        class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e5e7eb] dark:border-b-[#283039] px-6 lg:px-40 py-4 bg-background-light dark:bg-background-dark z-50"
+      >
+        <div class="flex items-center gap-4 text-[#111418] dark:text-white">
+          <div class="size-8 text-primary">
+            <svg
+              fill="currentColor"
+              viewbox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              ></path>
+            </svg>
+          </div>
+          <h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">
+            Remotely
+          </h2>
+        </div>
+        <div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+          <div class="flex items-center gap-9">
+            <a
+              class="text-[#637588] dark:text-[#9dabb9] text-sm font-medium leading-normal hover:text-[#111418] dark:hover:text-white transition-colors"
+              href="browse-jobs.html"
+              >Find Jobs</a
+            >
+            <a
+              class="text-[#637588] dark:text-[#9dabb9] text-sm font-medium leading-normal hover:text-[#111418] dark:hover:text-white transition-colors"
+              href="employer-dashboard.html"
+              >For Companies</a
+            >
+            <a
+              class="text-[#637588] dark:text-[#9dabb9] text-sm font-medium leading-normal hover:text-[#111418] dark:hover:text-white transition-colors"
+              href="#"
+              >Salaries</a
+            >
+            <a
+              class="text-[#637588] dark:text-[#9dabb9] text-sm font-medium leading-normal hover:text-[#111418] dark:hover:text-white transition-colors"
+              href="dashboard.html"
+              >Log In</a
+            >
+          </div>
+          <button
+            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-primary/90 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em]"
+            onclick="window.location.href = 'employer-dashboard.html'"
+          >
+            <span class="truncate">Post a Job</span>
+          </button>
+        </div>
+        <div class="md:hidden text-[#111418] dark:text-white">
+          <span class="material-symbols-outlined">menu</span>
+        </div>
+      </header>
+      <main class="flex-1">
+        <section
+          class="relative px-6 lg:px-40 py-16 lg:py-24 flex justify-center bg-background-light dark:bg-background-dark overflow-hidden"
+        >
+          <div
+            class="absolute inset-0 z-0 opacity-30 pointer-events-none"
+            style="
+              background: radial-gradient(
+                circle at 50% 0%,
+                #2b8cee30 0%,
+                transparent 50%
+              );
+            "
+          ></div>
+          <div
+            class="layout-content-container flex flex-col max-w-[960px] flex-1 z-10 items-center text-center gap-8"
+          >
+            <div class="flex flex-col gap-4 max-w-[800px]">
+              <div
+                class="inline-flex items-center gap-2 self-center px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wide mb-2"
+              >
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                #1 Remote Job Board
+              </div>
+              <h1
+                class="text-[#111418] dark:text-white text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-[-0.033em]"
+              >
+                Find your next <span class="text-primary">remote role</span>
+              </h1>
+              <p
+                class="text-[#637588] dark:text-[#9dabb9] text-lg md:text-xl font-medium leading-relaxed max-w-[640px] mx-auto"
+              >
+                Curated remote jobs for developers, designers, and marketers at
+                the world's leading companies. Work from anywhere, anytime.
+              </p>
+            </div>
+            <div
+              class="w-full max-w-[720px] mt-4 p-2 bg-white dark:bg-[#1C2126] border border-[#e5e7eb] dark:border-[#283039] rounded-2xl shadow-xl flex flex-col md:flex-row gap-2"
+            >
+              <div
+                class="flex-1 flex items-center px-4 h-12 md:h-14 border-b md:border-b-0 md:border-r border-[#e5e7eb] dark:border-[#283039]"
+              >
+                <span class="material-symbols-outlined text-[#9dabb9] mr-3"
+                  >search</span
+                >
+                <input
+                  class="w-full bg-transparent border-none focus:ring-0 text-[#111418] dark:text-white placeholder:text-[#9dabb9] text-base"
+                  placeholder="Job title, keywords, or company"
+                />
+              </div>
+              <div class="flex-1 flex items-center px-4 h-12 md:h-14">
+                <span class="material-symbols-outlined text-[#9dabb9] mr-3"
+                  >public</span
+                >
+                <input
+                  class="w-full bg-transparent border-none focus:ring-0 text-[#111418] dark:text-white placeholder:text-[#9dabb9] text-base"
+                  placeholder="Location or timezone"
+                />
+              </div>
+              <button
+                class="h-12 md:h-14 px-8 bg-primary hover:bg-primary/90 text-white rounded-xl font-bold text-base transition-colors shrink-0"
+                onclick="window.location.href = 'browse-jobs.html'"
+              >
+                Search
+              </button>
+            </div>
+            <div class="mt-12 text-center">
+              <p
+                class="text-[#637588] dark:text-[#9dabb9] text-sm font-medium mb-4"
+              >
+                Trusted by teams at
+              </p>
+              <div
+                class="flex flex-wrap items-center justify-center gap-8 opacity-60"
+              >
+                <span class="text-2xl font-bold text-[#111418] dark:text-white"
+                  >Vercel</span
+                >
+                <span class="text-2xl font-bold text-[#111418] dark:text-white"
+                  >Stripe</span
+                >
+                <span class="text-2xl font-bold text-[#111418] dark:text-white"
+                  >Shopify</span
+                >
+                <span class="text-2xl font-bold text-[#111418] dark:text-white"
+                  >Airbnb</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="px-6 lg:px-40 py-16 bg-white dark:bg-surface-dark">
+          <div class="max-w-[1200px] mx-auto">
+            <div class="text-center mb-12">
+              <h2
+                class="text-3xl md:text-4xl font-bold text-[#111418] dark:text-white mb-4"
+              >
+                Why Choose Remotely?
+              </h2>
+              <p
+                class="text-[#637588] dark:text-[#9dabb9] text-lg max-w-[600px] mx-auto"
+              >
+                The best platform for finding high-quality remote opportunities
+              </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+              <div class="flex flex-col items-center text-center p-6">
+                <div
+                  class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4"
+                >
+                  <span class="material-symbols-outlined text-primary text-3xl"
+                    >verified</span
+                  >
+                </div>
+                <h3
+                  class="text-xl font-bold text-[#111418] dark:text-white mb-2"
+                >
+                  Verified Jobs
+                </h3>
+                <p class="text-[#637588] dark:text-[#9dabb9]">
+                  All positions are verified and actively hiring
+                </p>
+              </div>
+              <div class="flex flex-col items-center text-center p-6">
+                <div
+                  class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4"
+                >
+                  <span class="material-symbols-outlined text-primary text-3xl"
+                    >rocket_launch</span
+                  >
+                </div>
+                <h3
+                  class="text-xl font-bold text-[#111418] dark:text-white mb-2"
+                >
+                  Top Companies
+                </h3>
+                <p class="text-[#637588] dark:text-[#9dabb9]">
+                  Work with leading tech companies worldwide
+                </p>
+              </div>
+              <div class="flex flex-col items-center text-center p-6">
+                <div
+                  class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4"
+                >
+                  <span class="material-symbols-outlined text-primary text-3xl"
+                    >public</span
+                  >
+                </div>
+                <h3
+                  class="text-xl font-bold text-[#111418] dark:text-white mb-2"
+                >
+                  Work Anywhere
+                </h3>
+                <p class="text-[#637588] dark:text-[#9dabb9]">
+                  100% remote positions with flexible hours
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="px-6 lg:px-40 py-16 bg-background-light dark:bg-background-dark"
+        >
+          <div class="max-w-[1200px] mx-auto text-center">
+            <h2
+              class="text-3xl md:text-4xl font-bold text-[#111418] dark:text-white mb-6"
+            >
+              Ready to find your dream job?
+            </h2>
+            <p
+              class="text-[#637588] dark:text-[#9dabb9] text-lg mb-8 max-w-[600px] mx-auto"
+            >
+              Join thousands of professionals who found their perfect remote
+              role
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                class="px-8 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold text-base transition-colors"
+                onclick="window.location.href = 'browse-jobs.html'"
+              >
+                Browse Jobs
+              </button>
+              <button
+                class="px-8 py-3 bg-white dark:bg-surface-dark hover:bg-gray-100 dark:hover:bg-surface-dark-hover text-[#111418] dark:text-white border border-[#e5e7eb] dark:border-[#283039] rounded-lg font-bold text-base transition-colors"
+                onclick="window.location.href = 'dashboard.html'"
+              >
+                Create Account
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer
+        class="border-t border-[#e5e7eb] dark:border-[#283039] px-6 lg:px-40 py-8 bg-white dark:bg-surface-dark"
+      >
+        <div class="max-w-[1200px] mx-auto">
+          <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 class="text-[#111418] dark:text-white font-bold mb-4">
+                Remotely
+              </h3>
+              <p class="text-[#637588] dark:text-[#9dabb9] text-sm">
+                The #1 remote job board for top talent
+              </p>
+            </div>
+            <div>
+              <h4 class="text-[#111418] dark:text-white font-semibold mb-3">
+                For Job Seekers
+              </h4>
+              <div class="flex flex-col gap-2">
+                <a
+                  href="browse-jobs.html"
+                  class="text-[#637588] dark:text-[#9dabb9] text-sm hover:text-primary"
+                  >Browse Jobs</a
+                >
+                <a
+                  href="dashboard.html"
+                  class="text-[#637588] dark:text-[#9dabb9] text-sm hover:text-primary"
+                  >Dashboard</a
+                >
+                <a
+                  href="profile.html"
+                  class="text-[#637588] dark:text-[#9dabb9] text-sm hover:text-primary"
+                  >Profile</a
+                >
+              </div>
+            </div>
+            <div>
+              <h4 class="text-[#111418] dark:text-white font-semibold mb-3">
+                For Employers
+              </h4>
+              <div class="flex flex-col gap-2">
+                <a
+                  href="employer-dashboard.html"
+                  class="text-[#637588] dark:text-[#9dabb9] text-sm hover:text-primary"
+                  >Post a Job</a
+                >
+                <a
+                  href="employer-dashboard.html"
+                  class="text-[#637588] dark:text-[#9dabb9] text-sm hover:text-primary"
+                  >Dashboard</a
+                >
+              </div>
+            </div>
+            <div>
+              <h4 class="text-[#111418] dark:text-white font-semibold mb-3">
+                Company
+              </h4>
+              <div class="flex flex-col gap-2">
+                <a
+                  href="#"
+                  class="text-[#637588] dark:text-[#9dabb9] text-sm hover:text-primary"
+                  >About</a
+                >
+                <a
+                  href="#"
+                  class="text-[#637588] dark:text-[#9dabb9] text-sm hover:text-primary"
+                  >Contact</a
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="border-t border-[#e5e7eb] dark:border-[#283039] pt-6 text-center"
+          >
+            <p class="text-[#637588] dark:text-[#9dabb9] text-sm">
+              © 2026 Remotely. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

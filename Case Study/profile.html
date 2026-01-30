@@ -1,0 +1,604 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>User Professional Profile</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2b8cee",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "card-dark": "#1a222d",
+              "card-light": "#ffffff",
+              "border-dark": "#283039",
+              "border-light": "#e5e7eb",
+            },
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom scrollbar for webkit browsers */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #111418;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #283039;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #3b4754;
+      }
+
+      .toggle-checkbox:checked {
+        right: 0;
+        border-color: #2b8cee;
+      }
+      .toggle-checkbox:checked + .toggle-label {
+        background-color: #2b8cee;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden"
+  >
+    <!-- Top Navigation -->
+    <header
+      class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark px-4 lg:px-10 py-3 bg-card-light dark:bg-card-dark sticky top-0 z-50"
+    >
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-2">
+          <div class="size-8 text-primary">
+            <svg
+              class="w-full h-full"
+              fill="none"
+              viewbox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </div>
+          <h2
+            class="text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block"
+          >
+            DevTalent
+          </h2>
+        </a>
+      </div>
+      <div class="flex flex-1 justify-end gap-4 lg:gap-8 items-center">
+        <div class="hidden md:flex items-center gap-6">
+          <a
+            class="text-sm font-medium leading-normal hover:text-primary transition-colors"
+            href="browse-jobs.html"
+            >Find Jobs</a
+          >
+          <a
+            class="text-sm font-medium leading-normal hover:text-primary transition-colors"
+            href="employer-dashboard.html"
+            >Companies</a
+          >
+          <a
+            class="text-sm font-medium leading-normal hover:text-primary transition-colors"
+            href="#"
+            >Salaries</a
+          >
+          <a
+            class="text-sm font-medium leading-normal hover:text-primary transition-colors"
+            href="#"
+            >Messages</a
+          >
+        </div>
+        <button
+          class="text-[#637588] dark:text-[#9dabb9] hover:text-primary md:hidden"
+        >
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        <div
+          class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-transparent hover:border-primary transition-colors cursor-pointer"
+          onclick="window.location.href = 'dashboard.html'"
+          data-alt="User profile avatar thumbnail"
+          style="
+            background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAaA6eX1bXf5MNlNRC4ZY17OL6SjCES_668i5aJFnDwHL7qnaMsVRvb4Y23ezap1qsIrrqjJV_rEalp-EzFldgzpXVEGKCD5W8xTmt8soJu6dzK9sT2nTNZO7WAhnN6c_dYUVLSwOLuzJZVYF_d-zP8nI5t8UGKIaouEA-Gr6sctlTUSBdCGr3fWFMImD-hWK4LbVnm1Q4T6xS2as2Cb2DGRMuR02fNoFtOaZsao9OjvK8X_MNM33252PbdY8CQ_dcnE64v4qd8bfSF&quot;);
+          "
+        ></div>
+      </div>
+    </header>
+    <div
+      class="layout-container flex h-full grow flex-col max-w-[1200px] mx-auto w-full px-4 lg:px-8 py-6 lg:py-10"
+    >
+      <!-- Breadcrumbs -->
+      <div class="flex flex-wrap gap-2 pb-4">
+        <a
+          class="text-[#637588] dark:text-[#9dabb9] text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+          href="dashboard.html"
+        >
+          <span class="material-symbols-outlined text-[16px]">dashboard</span>
+          Dashboard
+        </a>
+        <span class="text-[#637588] dark:text-[#9dabb9] text-sm font-medium"
+          >/</span
+        >
+        <span class="text-primary text-sm font-medium">Edit Profile</span>
+      </div>
+      <!-- Page Heading -->
+      <div
+        class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8"
+      >
+        <div class="flex flex-col gap-2">
+          <h1
+            class="text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]"
+          >
+            Edit Profile
+          </h1>
+          <p class="text-[#637588] dark:text-[#9dabb9] text-base font-normal">
+            Manage your professional identity and settings
+          </p>
+        </div>
+        <div class="flex gap-3">
+          <button
+            class="flex items-center justify-center rounded-lg h-10 px-4 bg-transparent border border-border-light dark:border-border-dark text-sm font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+          >
+            <span class="truncate">Discard</span>
+          </button>
+          <button
+            class="flex items-center justify-center rounded-lg h-10 px-6 bg-primary hover:bg-blue-600 text-white text-sm font-bold shadow-lg shadow-blue-500/20 transition-all"
+          >
+            <span class="truncate">Save Changes</span>
+          </button>
+        </div>
+      </div>
+      <!-- Main Content Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- Left Column: Identity & Settings -->
+        <div class="lg:col-span-4 flex flex-col gap-6">
+          <!-- Profile Card -->
+          <div
+            class="bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark p-6 flex flex-col items-center gap-5 relative overflow-hidden group"
+          >
+            <!-- Avatar Area -->
+            <div class="relative">
+              <div
+                class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-32 ring-4 ring-background-light dark:ring-background-dark"
+                data-alt="User profile avatar large"
+                style="
+                  background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAl8Y-8R7MMggnJlzvOLqyz3v3IqcXTiZBjA8-OOoi7jINK9qrRJw_WCe977NWJFoKYImKTqXabGCHmz1pywdBgJWsdf2AtGHsTtoumOdjXEOXyv7QKS6Hz8TB1ZaPWXnVPo61yJaTVz78rDHNBG7OBGfYTrwleu_VHkhvtLpu43B3VGlC1kxIkfBEd9XJZxHkTrWKmaMLH3YoK6nfhjbdkigIILz2MhesokPncfClRxspYOvOtach8kMEbzMyCGkXctt1BHiWe73Qi&quot;);
+                "
+              ></div>
+              <button
+                class="absolute bottom-0 right-0 p-2 bg-primary text-white rounded-full hover:bg-blue-600 shadow-lg transition-transform hover:scale-105"
+                title="Upload new photo"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >photo_camera</span
+                >
+              </button>
+            </div>
+            <!-- Basic Fields -->
+            <div class="w-full flex flex-col gap-4">
+              <label class="flex flex-col w-full">
+                <p
+                  class="text-sm font-medium pb-2 text-[#637588] dark:text-[#9dabb9]"
+                >
+                  Display Name
+                </p>
+                <div class="relative">
+                  <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#637588] dark:text-[#9dabb9] text-[20px]"
+                    >person</span
+                  >
+                  <input
+                    class="w-full rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-[#1c2127] h-10 pl-10 pr-4 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-[#637588] dark:placeholder:text-[#505a66]"
+                    value="Alex Chen"
+                  />
+                </div>
+              </label>
+              <label class="flex flex-col w-full">
+                <p
+                  class="text-sm font-medium pb-2 text-[#637588] dark:text-[#9dabb9]"
+                >
+                  Job Title
+                </p>
+                <div class="relative">
+                  <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#637588] dark:text-[#9dabb9] text-[20px]"
+                    >work</span
+                  >
+                  <input
+                    class="w-full rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-[#1c2127] h-10 pl-10 pr-4 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-[#637588] dark:placeholder:text-[#505a66]"
+                    value="Senior Frontend Engineer"
+                  />
+                </div>
+              </label>
+            </div>
+          </div>
+          <!-- Availability Status -->
+          <div
+            class="bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark p-5 flex items-center justify-between"
+          >
+            <div class="flex flex-col">
+              <span class="text-sm font-bold text-gray-900 dark:text-white"
+                >Open to Work</span
+              >
+              <span class="text-xs text-[#637588] dark:text-[#9dabb9]"
+                >Visible to recruiters</span
+              >
+            </div>
+            <div
+              class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in"
+            >
+              <input
+                class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-300 dark:border-[#283039] appearance-none cursor-pointer transition-all duration-300 left-0 checked:left-[calc(100%-1.5rem)] checked:border-primary"
+                id="toggle"
+                name="toggle"
+                type="checkbox"
+              />
+              <label
+                class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 dark:bg-[#283039] cursor-pointer transition-colors duration-300 checked:bg-primary/50"
+                for="toggle"
+              ></label>
+            </div>
+          </div>
+          <!-- Social Links -->
+          <div
+            class="bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark p-6 flex flex-col gap-4"
+          >
+            <h3 class="text-base font-bold mb-1">Online Presence</h3>
+            <label class="flex flex-col w-full">
+              <div class="relative flex items-center">
+                <div class="absolute left-3 flex items-center justify-center">
+                  <!-- GitHub Icon placeholder (using Material Symbol for code as generic dev link) -->
+                  <span
+                    class="material-symbols-outlined text-[#637588] dark:text-[#9dabb9] text-[20px]"
+                    >code</span
+                  >
+                </div>
+                <input
+                  class="w-full rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-[#1c2127] h-10 pl-10 pr-4 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-[#637588] dark:placeholder:text-[#505a66]"
+                  placeholder="GitHub URL"
+                  value="github.com/alexc"
+                />
+              </div>
+            </label>
+            <label class="flex flex-col w-full">
+              <div class="relative flex items-center">
+                <div class="absolute left-3 flex items-center justify-center">
+                  <span
+                    class="material-symbols-outlined text-[#637588] dark:text-[#9dabb9] text-[20px]"
+                    >business_center</span
+                  >
+                </div>
+                <input
+                  class="w-full rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-[#1c2127] h-10 pl-10 pr-4 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-[#637588] dark:placeholder:text-[#505a66]"
+                  placeholder="LinkedIn URL"
+                  value="linkedin.com/in/alexchen"
+                />
+              </div>
+            </label>
+            <label class="flex flex-col w-full">
+              <div class="relative flex items-center">
+                <div class="absolute left-3 flex items-center justify-center">
+                  <span
+                    class="material-symbols-outlined text-[#637588] dark:text-[#9dabb9] text-[20px]"
+                    >link</span
+                  >
+                </div>
+                <input
+                  class="w-full rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-[#1c2127] h-10 pl-10 pr-4 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-[#637588] dark:placeholder:text-[#505a66]"
+                  placeholder="Portfolio URL"
+                  value="alexchen.dev"
+                />
+              </div>
+            </label>
+          </div>
+        </div>
+        <!-- Right Column: Details -->
+        <div class="lg:col-span-8 flex flex-col gap-6">
+          <!-- About Me -->
+          <div
+            class="bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark p-6"
+          >
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-xl font-bold">About Me</h3>
+            </div>
+            <div class="relative">
+              <textarea
+                class="w-full rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-[#1c2127] min-h-[140px] p-4 text-sm leading-relaxed focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-y text-gray-800 dark:text-gray-200 placeholder:text-[#637588] dark:placeholder:text-[#505a66]"
+              >
+I am a passionate Senior Frontend Engineer with over 6 years of experience building scalable web applications. I specialize in the React ecosystem, TypeScript, and modern CSS architectures. I love solving complex UI/UX challenges and mentoring junior developers.</textarea
+              >
+              <div
+                class="absolute bottom-3 right-3 text-xs text-[#637588] dark:text-[#9dabb9]"
+              >
+                240/500
+              </div>
+            </div>
+          </div>
+          <!-- Skills -->
+          <div
+            class="bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark p-6"
+          >
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-xl font-bold">Skills</h3>
+              <span
+                class="text-xs font-medium text-primary cursor-pointer hover:underline"
+                >View all</span
+              >
+            </div>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <!-- Skill Tag -->
+              <div
+                class="flex items-center gap-1 pl-3 pr-2 py-1.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium border border-primary/20"
+              >
+                React
+                <button class="hover:text-red-400 transition-colors ml-1">
+                  <span
+                    class="material-symbols-outlined text-[16px] align-middle"
+                    >close</span
+                  >
+                </button>
+              </div>
+              <div
+                class="flex items-center gap-1 pl-3 pr-2 py-1.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium border border-primary/20"
+              >
+                TypeScript
+                <button class="hover:text-red-400 transition-colors ml-1">
+                  <span
+                    class="material-symbols-outlined text-[16px] align-middle"
+                    >close</span
+                  >
+                </button>
+              </div>
+              <div
+                class="flex items-center gap-1 pl-3 pr-2 py-1.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium border border-primary/20"
+              >
+                Node.js
+                <button class="hover:text-red-400 transition-colors ml-1">
+                  <span
+                    class="material-symbols-outlined text-[16px] align-middle"
+                    >close</span
+                  >
+                </button>
+              </div>
+              <div
+                class="flex items-center gap-1 pl-3 pr-2 py-1.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium border border-primary/20"
+              >
+                Tailwind CSS
+                <button class="hover:text-red-400 transition-colors ml-1">
+                  <span
+                    class="material-symbols-outlined text-[16px] align-middle"
+                    >close</span
+                  >
+                </button>
+              </div>
+              <div
+                class="flex items-center gap-1 pl-3 pr-2 py-1.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium border border-primary/20"
+              >
+                Next.js
+                <button class="hover:text-red-400 transition-colors ml-1">
+                  <span
+                    class="material-symbols-outlined text-[16px] align-middle"
+                    >close</span
+                  >
+                </button>
+              </div>
+            </div>
+            <div class="relative group">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#637588] dark:text-[#9dabb9] text-[20px] group-focus-within:text-primary transition-colors"
+                >add</span
+              >
+              <input
+                class="w-full rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-[#1c2127] h-10 pl-10 pr-4 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-[#637588] dark:placeholder:text-[#505a66]"
+                placeholder="Add a new skill (e.g. GraphQL)"
+              />
+            </div>
+          </div>
+          <!-- Experience Timeline -->
+          <div
+            class="bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark p-6"
+          >
+            <div class="flex justify-between items-center mb-6">
+              <h3 class="text-xl font-bold">Experience</h3>
+              <button
+                class="flex items-center gap-1 text-sm font-bold text-primary hover:text-blue-400 transition-colors"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >add_circle</span
+                >
+                Add Role
+              </button>
+            </div>
+            <div class="flex flex-col relative pl-2">
+              <!-- Vertical Line -->
+              <div
+                class="absolute left-[11px] top-2 bottom-4 w-[2px] bg-border-light dark:bg-[#283039]"
+              ></div>
+              <!-- Timeline Item 1 -->
+              <div class="relative pl-8 pb-8 group">
+                <!-- Dot -->
+                <div
+                  class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-background-light dark:bg-background-dark border-2 border-primary z-10 flex items-center justify-center"
+                >
+                  <div class="w-2 h-2 rounded-full bg-primary"></div>
+                </div>
+                <div
+                  class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1"
+                >
+                  <div>
+                    <h4
+                      class="text-base font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors"
+                    >
+                      Senior Frontend Engineer
+                    </h4>
+                    <p
+                      class="text-sm font-medium text-[#637588] dark:text-[#9dabb9]"
+                    >
+                      TechCorp Inc.
+                    </p>
+                  </div>
+                  <span
+                    class="text-xs font-semibold bg-gray-200 dark:bg-[#283039] text-gray-700 dark:text-gray-300 px-2 py-1 rounded"
+                    >2020 - Present</span
+                  >
+                </div>
+                <p
+                  class="mt-3 text-sm text-[#637588] dark:text-[#9dabb9] leading-relaxed"
+                >
+                  Leading the frontend migration to Next.js. Improved site
+                  performance by 40% and established a comprehensive design
+                  system used across 3 product lines.
+                </p>
+                <div
+                  class="mt-3 flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <button
+                    class="text-xs text-[#637588] hover:text-primary flex items-center gap-1"
+                  >
+                    <span class="material-symbols-outlined text-[14px]"
+                      >edit</span
+                    >
+                    Edit
+                  </button>
+                  <button
+                    class="text-xs text-[#637588] hover:text-red-400 flex items-center gap-1"
+                  >
+                    <span class="material-symbols-outlined text-[14px]"
+                      >delete</span
+                    >
+                    Remove
+                  </button>
+                </div>
+              </div>
+              <!-- Timeline Item 2 -->
+              <div class="relative pl-8 pb-2 group">
+                <!-- Dot -->
+                <div
+                  class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-background-light dark:bg-background-dark border-2 border-[#637588] dark:border-[#3b4754] z-10"
+                ></div>
+                <div
+                  class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1"
+                >
+                  <div>
+                    <h4
+                      class="text-base font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors"
+                    >
+                      Software Developer
+                    </h4>
+                    <p
+                      class="text-sm font-medium text-[#637588] dark:text-[#9dabb9]"
+                    >
+                      StartupInc
+                    </p>
+                  </div>
+                  <span
+                    class="text-xs font-semibold bg-gray-200 dark:bg-[#283039] text-gray-700 dark:text-gray-300 px-2 py-1 rounded"
+                    >2018 - 2020</span
+                  >
+                </div>
+                <p
+                  class="mt-3 text-sm text-[#637588] dark:text-[#9dabb9] leading-relaxed"
+                >
+                  Developed key features for the MVP using React and Redux.
+                  Collaborated directly with the founders to iterate on
+                  product-market fit.
+                </p>
+                <div
+                  class="mt-3 flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <button
+                    class="text-xs text-[#637588] hover:text-primary flex items-center gap-1"
+                  >
+                    <span class="material-symbols-outlined text-[14px]"
+                      >edit</span
+                    >
+                    Edit
+                  </button>
+                  <button
+                    class="text-xs text-[#637588] hover:text-red-400 flex items-center gap-1"
+                  >
+                    <span class="material-symbols-outlined text-[14px]"
+                      >delete</span
+                    >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Education (Compact) -->
+          <div
+            class="bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark p-6"
+          >
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-xl font-bold">Education</h3>
+              <button
+                class="flex items-center gap-1 text-sm font-bold text-primary hover:text-blue-400 transition-colors"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >add_circle</span
+                >
+                Add
+              </button>
+            </div>
+            <div
+              class="flex gap-4 items-center p-3 rounded-lg border border-transparent hover:border-border-light dark:hover:border-border-dark hover:bg-background-light dark:hover:bg-[#1c2127] transition-all cursor-pointer group"
+            >
+              <div
+                class="size-12 rounded bg-gray-100 dark:bg-[#283039] flex items-center justify-center text-gray-400"
+              >
+                <span class="material-symbols-outlined">school</span>
+              </div>
+              <div class="flex flex-col flex-1">
+                <h4 class="text-sm font-bold">BS Computer Science</h4>
+                <p class="text-xs text-[#637588] dark:text-[#9dabb9]">
+                  University of Technology • 2014 - 2018
+                </p>
+              </div>
+              <span
+                class="material-symbols-outlined text-[#637588] opacity-0 group-hover:opacity-100 transition-opacity"
+                >chevron_right</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
